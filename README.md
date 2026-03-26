@@ -55,10 +55,63 @@ E --> F[Integration with Government/Healthcare/Banking Portals]
 ```
 
 ## 🔹 Tech Stack
-- **Languages:** Python
-- **Libraries:** Pandas, Scikit-learn, JSON, Regex, Torchaudio/Librosa (for audio)
-- **ML Models:** ASR models (Whisper, Wav2Vec2, Indic ASR models)
-- **Data Sources:** Mozilla Common Voice, IndicTTS, FLEURS
+| Layer | Technology |
+|---|---|
+| Language | Python ≥ 3.9 |
+| Data processing | Pandas, scikit-learn |
+| Text normalisation | `unicodedata`, `re` (stdlib) |
+| Audio processing | Librosa, Torchaudio |
+| ASR models | OpenAI Whisper, Wav2Vec2, AI4Bharat IndicWav2Vec |
+| Data sources | Mozilla Common Voice, IndicTTS, FLEURS, OpenSLR |
+| Packaging | `pyproject.toml` (PEP 517/518), setuptools |
+| Testing | pytest, pytest-cov |
+
+---
+
+## 🔹 Project Structure
+
+```
+Voice2Form/
+├── data/
+│   ├── raw/               # Original audio files and CSV manifest
+│   └── processed/         # Intermediate processed artefacts
+├── manifests/             # JSONL manifests for ASR training
+├── notebooks/
+│   └── Voice2Form.ipynb   # Exploratory / demo notebook
+├── src/
+│   └── voice2form/        # Installable Python package
+│       ├── data/
+│       │   ├── load_dataset.py   # CSV → DataFrame loader
+│       │   ├── preprocess.py     # Cleaning & normalisation
+│       │   └── split.py          # Train/val/test split + JSONL export
+│       ├── models/
+│       │   └── asr_model.py      # ASR model wrappers (Whisper, Wav2Vec2 …)
+│       └── utils/
+│           └── text_utils.py     # Shared text helper functions
+├── tests/                 # pytest test suite
+├── .gitignore
+├── pyproject.toml         # Package metadata & build config
+├── requirements.txt       # Pinned runtime + dev dependencies
+└── README.md
+```
+
+## 🔹 Getting Started
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/suganthv24/Voice2Form.git
+cd Voice2Form
+
+# 2. Create a virtual environment
+python -m venv .venv
+source .venv/bin/activate   # Windows: .venv\Scripts\activate
+
+# 3. Install the package with dev dependencies
+pip install -e ".[dev]"
+
+# 4. Run the tests
+pytest
+```
 
 ---
 
