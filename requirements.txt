@@ -1,0 +1,16 @@
+# Core data-processing dependencies
+pandas>=2.0
+scikit-learn>=1.3
+
+# Audio processing
+librosa>=0.10
+torchaudio>=2.0
+
+# ASR model integrations
+openai-whisper>=20231117
+transformers>=4.35
+torch>=2.0
+
+# Development / testing
+pytest>=7.4
+pytest-cov>=4.1
